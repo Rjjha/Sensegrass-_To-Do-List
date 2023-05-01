@@ -9,6 +9,7 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [popupActive, setPopupActive] = useState(false);
   const [newTodo, setNewTodo] = useState("");
+  const [newDate, setNewDate] = useState("");
 
   useEffect(() => {
     GetTodos();
@@ -51,13 +52,15 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        text: newTodo
+        text: newTodo,
+        date: newDate
       })
     }).then(res => res.json());
 
     setTodos([...todos, data]);
     setPopupActive(false);
     setNewTodo("");
+    setNewDate("");
   }
 
 
@@ -72,6 +75,7 @@ function App() {
           } key={todo._id} onClick={() => completeTodo(todo._id)}>
             <div className="checkbox"></div>
             <div className="text">{todo.text}</div>
+            <div className="time">{todo.date}</div>
             <div className="delete-todo" onClick={() => deleteTodo(todo._id)}>x</div>
           </div>
           ))}
@@ -90,6 +94,12 @@ function App() {
               className="add-todo-input" 
               onChange={e => setNewTodo(e.target.value)} 
               value={newTodo}/>
+            <h3>Task Date And time</h3>
+            <input 
+              type="datetime-local" 
+              className="add-todo-input" 
+              onChange={e => setNewDate(e.target.value)} 
+              value={newDate}/>
             <div className="button" onClick={addTodo}>Create Task</div>
           </div>
         </div>

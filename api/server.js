@@ -25,7 +25,8 @@ app.get('/todos', async(req,res) => {
 
 app.post('/todo/new', (req,res) => {
     const todo = new Todo({
-        text: req.body.text
+        text: req.body.text,
+        date: req.body.date
     });
 
     todo.save();
