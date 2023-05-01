@@ -3,7 +3,7 @@ import './fonts/Poppins-Regular.ttf';
 import {useState, useEffect} from 'react';
 
 
-const API_BASE = "https://todo-backend-cgga.onrender.com/";
+const API_BASE = "https://todo-backend-cgga.onrender.com";
 
 function App() {
   const [todos, setTodos] = useState([]);
